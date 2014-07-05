@@ -34,9 +34,6 @@ describe FedoraRpm do
     expect(rpm).to be_invalid
   end
 
-  it 'must have at least one koji build' do
-  end
-
   describe '#to_param' do
     it 'returns the name stored in db' do
       expect(rpm.name).to eq 'rubygem-foo'
@@ -58,7 +55,10 @@ describe FedoraRpm do
     end
   end
 
-  describe '#retrieve_builds' do
+  describe 'koji_builds' do
+    it 'must have at least one koji build' do
+    end
+
     it 'returns the koji builds of supported Fedora versions' do
     end
   end
@@ -71,5 +71,9 @@ describe FedoraRpm do
         expect(FedoraRpm.fedora_versions.keys.count).to eq(3)
       end
     end
-  end # FedoraRpm#fedora_versions
+  end
+
+  describe '#retrieve_homepage' do
+  end
+
 end # FedoraRpm

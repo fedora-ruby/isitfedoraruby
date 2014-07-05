@@ -8,10 +8,7 @@ def linux_only(require_as)
     RUBY_PLATFORM.include?('linux') && require_as
 end
 
-gem 'rails', '~> 4.0.5'
-
-# temp fix http://stackoverflow.com/a/23525354/2137281
-gem 'sprockets', '<= 2.11.0'
+gem 'rails', '~> 4.1.4'
 
 # Get latest fixes
 gem 'rmagick', git: "https://github.com/rmagick/rmagick.git"
@@ -24,7 +21,11 @@ gem 'fast_gettext'
 gem 'gettext_i18n_rails'
 gem 'rails-i18n'
 
-gem 'sass-rails'
+# temp fix http://stackoverflow.com/a/23525354/2137281
+#gem 'sprockets', '<= 2.11.0'
+
+# https://github.com/sstephenson/sprockets/issues/540
+gem 'sass-rails', '~> 4.0.2'
 gem 'coffee-rails'
 gem 'uglifier'
 
