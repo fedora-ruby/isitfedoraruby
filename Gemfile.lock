@@ -55,6 +55,7 @@ GEM
     arel (4.0.2)
     ast (2.0.0)
     awesome_print (1.2.0)
+    awesome_spawn (1.2.1)
     bicho (0.0.6)
       highline (~> 1.6.2)
       inifile (~> 0.4.1)
@@ -355,6 +356,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  awesome_spawn
   bicho
   bootstrap-sass
   bootstrap-will_paginate

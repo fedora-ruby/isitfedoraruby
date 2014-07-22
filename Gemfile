@@ -41,6 +41,7 @@ gem 'pkgwat'
 gem 'bicho'
 gem 'ruby-bugzilla'
 gem 'text'
+gem 'awesome_spawn'
 
 gem 'whenever', :require => false
 
