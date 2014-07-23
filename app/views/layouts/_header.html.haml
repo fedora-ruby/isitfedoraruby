@@ -1,6 +1,6 @@
 %nav.navbar.navbar-default.navbar-fixed-top{role: 'navigation'}
   .container-fluid
-    .navbar-header
+    .navbar-inner#center
       %button.navbar-toggle{type: 'button', data: {toggle: 'collapse', target: '#header-collapse'}}
         %span.sr-only 'Toggle navigation'
         %span.icon-bar
@@ -11,15 +11,20 @@
 
     .collapse.navbar-collapse#header-collapse
       %ul.nav.navbar-nav
-        %li= link_to _('Home'), root_path
-        %li= link_to _('Ruby Gems'), rubygems_path
-        %li= link_to _('Fedora Rpms'), fedorarpms_path
-        %li= link_to _('Contribute'), contribute_path
-        %li= link_to _('About'), about_path
+        %li{class: is_active?(root_path)}
+          = link_to _('Home'), root_path
+        %li{class: is_active?(rubygems_path)}
+          = link_to _('Ruby Gems'), rubygems_path
+        %li{class: is_active?(fedorarpms_path)}
+          = link_to _('Fedora Rpms'), fedorarpms_path
+        %li{class: is_active?(contribute_path)}
+          = link_to _('Contribute'), contribute_path
+        %li{class: is_active?(about_path)}
+          = link_to _('About'), about_path
         %li
           = form_tag( { :controller => 'searches', :action => 'redirect' },
           :class => 'navbar-form', :method => 'post') do
             %div.form-group
               = text_field_tag :search, params[:search] ||= '', id: 'search_field',
                 class: 'search-query form-control', placeholder: 'Search'
-            = submit_tag _('Search'), name: nil, class: 'btn btn-default'
+            = submit_tag _('Go!'), name: nil, class: 'btn btn-default'
