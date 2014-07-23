@@ -60,7 +60,7 @@
           =@rpm.description
 
     .tab-pane.fade#versions
-      %table.table.table-hover.table-condensed
+      %table.table.table-hover.table-condensed.table-responsive
         %thead
           %tr.warning
             -FedoraRpm.fedora_versions.each do |t, g|
@@ -82,7 +82,7 @@
           - else
             %label= _('Dependencies:')
 
-            %table.table.table-hover.table-condensed
+            %table.table.table-hover.table-condensed.table-responsive
               %thead
                 %tr.warning
                   %th= _('Package')
@@ -105,7 +105,7 @@
           - else
             %label= _('Dependents:')
 
-            %table.table.table-hover.table-condensed
+            %table.table.table-hover.table-condensed.table-responsive
               %thead
                 %tr.warning
                   %th= _('Package')
@@ -127,7 +127,7 @@
       - if @rpm.bugs.blank?
         %h4 No bugs found!
       - else
-        %table.table.table-hover.table-condensed
+        %table.table.table-hover.table-condensed.table-responsive
           %thead
             %tr.warning
               %th= _('ID')
@@ -141,7 +141,7 @@
                   = b.name.truncate(60)
 
     .tab-pane.fade#builds
-      %table.table.table-hover.table-condensed
+      %table.table.table-hover.table-condensed.table-responsive
         %thead
           %tr.warning
             %th= _('Build ID')
