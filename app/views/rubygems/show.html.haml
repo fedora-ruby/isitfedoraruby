@@ -23,9 +23,9 @@
 
   - unless @dependencies.blank?
     %h3 Depends on:
-    %table.table.table-striped.table-condensed.table-bordered.dependency
+    %table.table.table-hover.table-condensed
       %thead
-        %tr
+        %tr.warning
           %th Package
           %th Gem Version
           - FedoraRpm.fedora_versions.each do |t, g|

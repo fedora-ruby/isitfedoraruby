@@ -60,9 +60,9 @@
           =@rpm.description
 
     .tab-pane.fade#versions
-      %table.table.table-striped.table-condensed.table-bordered
+      %table.table.table-hover.table-condensed
         %thead
-          %tr
+          %tr.warning
             -FedoraRpm.fedora_versions.each do |t, g|
               %th= t
             %th= _('Gem Version')
@@ -82,9 +82,9 @@
           - else
             %label= _('Dependencies:')
 
-            %table.table.table-striped.table-condensed.table-bordered
+            %table.table.table-hover.table-condensed
               %thead
-                %tr
+                %tr.warning
                   %th= _('Package')
                   -FedoraRpm.fedora_versions.each do |t, g|
                     - if g == 'master'
@@ -105,9 +105,9 @@
           - else
             %label= _('Dependents:')
 
-            %table.table.table-striped.table-condensed.table-bordered
+            %table.table.table-hover.table-condensed
               %thead
-                %tr
+                %tr.warning
                   %th= _('Package')
                   -FedoraRpm.fedora_versions.each do |t, g|
                     - if g == 'master'
@@ -127,11 +127,9 @@
       - if @rpm.bugs.blank?
         %h4 No bugs found!
       - else
-        %h2
-        = _('Bugs:')
-        %table.table.table-striped.table-condensed.table-bordered
+        %table.table.table-hover.table-condensed
           %thead
-            %tr
+            %tr.warning
               %th= _('ID')
               %th= _('Title')
           %tbody
@@ -143,9 +141,9 @@
                   = b.name.truncate(60)
 
     .tab-pane.fade#builds
-      %table.table.table-striped.table-condensed.table-bordered
+      %table.table.table-hover.table-condensed
         %thead
-          %tr
+          %tr.warning
             %th= _('Build ID')
             %th= _('Title')
         %tbody
