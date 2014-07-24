@@ -7,22 +7,18 @@ $grayMediumLight: #eaeaea;
 /* universal */
 
 html {
-  overflow-y: scroll;
+  height: 100%;
 }
 
 body {
   font-family: "Liberation Sans", "Lucida Grande", "Luxi Sans", "Bitstream Vera Sans", helvetica, verdana, arial, sans-serif;
   padding-top: 70px;
-  line-height: 1.42857;
+//  line-height: 1.42857;
   margin: 0px;
   font-size: 14px;
   color: rgb(90, 90, 90);
 }
 /* Override bootstrap */
-
-.container-fluid {
-  margin-top: 4px;
-}
 
 .well {
   min-height: 20px;
@@ -32,17 +28,6 @@ body {
   border: 2px solid rgba(58, 102, 164, 0.40);
   border-radius: 2px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
-}
-
-@media (min-width: 768px) {
-    .navbar .navbar-nav {
-        display: inline-block;
-        float: none;
-    }
-
-    .navbar .navbar-collapse {
-        text-align: center;
-    }
 }
 
 /* Navbar colors */
@@ -103,11 +88,6 @@ $colHighlight   : #dce7f6;
 // hack for firefox only
 @-moz-document url-prefix() {
   fieldset { display: table-cell; }
-}
-
-.container{
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .error{
@@ -188,7 +168,6 @@ p {
 /* header */
 
 /* footer */
-
 footer {
   margin-top: 45px;
   padding-top: 5px;
@@ -223,6 +202,10 @@ footer {
 
 .progress {
   width: 200px;
+}
+
+.description {
+  margin: 30px 20px 0px;
 }
 
 .stats {
