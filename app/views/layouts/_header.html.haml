@@ -1,7 +1,7 @@
 %nav.navbar.navbar-default.navbar-fixed-top{role: 'navigation'}
-  .container-fluid
-    .navbar-inner#center
-      %button.navbar-toggle{type: 'button', data: {toggle: 'collapse', target: '#header-collapse'}}
+  .container
+    .navbar-inner
+      %button.navbar-toggle{ role: 'navigation', type: 'button', data: {toggle: 'collapse', target: '#header-collapse'}}
         %span.sr-only 'Toggle navigation'
         %span.icon-bar
         %span.icon-bar
@@ -10,7 +10,7 @@
       = link_to 'FedoraRuby', root_path, class: 'navbar-brand'
 
     .collapse.navbar-collapse#header-collapse
-      %ul.nav.navbar-nav
+      %ul.nav.navbar-nav.navbar-left
         %li{class: is_active?(root_path)}
           = link_to _('Home'), root_path
         %li{class: is_active?(rubygems_path)}
@@ -21,6 +21,8 @@
           = link_to _('Contribute'), contribute_path
         %li{class: is_active?(about_path)}
           = link_to _('About'), about_path
+
+      %ul.nav.navbar-nav.navbar-right
         %li
           = form_tag( { :controller => 'searches', :action => 'redirect' },
           :class => 'navbar-form', :method => 'post') do
