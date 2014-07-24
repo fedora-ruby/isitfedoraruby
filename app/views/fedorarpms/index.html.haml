@@ -1,38 +1,38 @@
 %h2= @page_title
 %h4 There are currently #{@rpms.count} rubygems packaged for Fedora.
-
 %p
-%table.table.table-hover.table-condensed.table-responsive
-  %thead
-    %tr.warning
-      %th= sortable 'name', _('Name')
-      - FedoraRpm.fedora_versions.each do |t, g|
-        %th= t
-      %th= _('Upstream')
-      %th= sortable 'commits', _('Commits')
-      %th= sortable 'last_commit_date', _('Last Commit')
-      %th= _('Patched?')
-      %th= sortable 'owner', _('Owner')
+.table-responsive
+  %table.table.table-hover.table-condensed
+    %thead
+      %tr.warning
+        %th= sortable 'name', _('Name')
+        - FedoraRpm.fedora_versions.each do |t, g|
+          %th= t
+        %th= _('Upstream')
+        %th= sortable 'commits', _('Commits')
+        %th= sortable 'last_commit_date', _('Last Commit')
+        %th= _('Patched?')
+        %th= sortable 'owner', _('Owner')
 
-  %tbody
-    - @rpms.each do |rpm|
-      - if rpm.up_to_date?
-        %tr
-        %td= link_to rpm.shortname.truncate(35), fedorarpm_path(rpm.name)
-        -FedoraRpm.fedora_versions.each do |t, g|
-          - unless rpm.up_to_date?
-            %td.warning= rpm.version_for(t)
-          - else
-            %td= rpm.version_for(t)
-        %td= rpm.ruby_gem.version
-        %td= rpm.commits
-        %td= rpm.last_commit_date_in_words
-        %td
-          - if rpm.any_patched?
-            %span.glyphicon.glyphicon-ok
-        %td
-          - unless rpm.owner.nil?
-            =link_to rpm.owner, fedorarpm_path(rpm.owner + '/by_owner')
+    %tbody
+      - @rpms.each do |rpm|
+        - if rpm.up_to_date?
+          %tr
+          %td= link_to rpm.shortname.truncate(35), fedorarpm_path(rpm.name)
+          -FedoraRpm.fedora_versions.each do |t, g|
+            - unless rpm.up_to_date?
+              %td.warning= rpm.version_for(t)
+            - else
+              %td= rpm.version_for(t)
+          %td= rpm.ruby_gem.version
+          %td= rpm.commits
+          %td= rpm.last_commit_date_in_words
+          %td
+            - if rpm.any_patched?
+              %span.glyphicon.glyphicon-ok
+          %td
+            - unless rpm.owner.nil?
+              =link_to rpm.owner, fedorarpm_path(rpm.owner + '/by_owner')
 
 %div.pagination
   = will_paginate @rpms

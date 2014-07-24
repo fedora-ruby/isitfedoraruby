@@ -25,17 +25,18 @@
   .col-md-6
     - unless @dependencies.blank?
       %h4 Depends on
-      %table.table.table-hover.table-condensed.table-responsive
-        %thead
-          %tr.warning
-            %th Package
-            %th Gem Version
-            - FedoraRpm.fedora_versions.each do |t, g|
-              %th= t
-        %tbody
-          - @dependencies.each do |d|
-            %tr
-              %td= link_to d.name, rubygem_path(d.name)
-              %td= d.version
+      .table-responsive
+        %table.table.table-hover.table-condensed
+          %thead
+            %tr.warning
+              %th Package
+              %th Gem Version
               - FedoraRpm.fedora_versions.each do |t, g|
-                %td= d.fedora_rpm.version_for(t)
+                %th= t
+          %tbody
+            - @dependencies.each do |d|
+              %tr
+                %td= link_to d.name, rubygem_path(d.name)
+                %td= d.version
+                - FedoraRpm.fedora_versions.each do |t, g|
+                  %td= d.fedora_rpm.version_for(t)

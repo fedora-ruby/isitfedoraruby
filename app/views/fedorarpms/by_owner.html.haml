@@ -2,18 +2,19 @@
   %h2= _('All rubygems maintained by %{name}') % { :name => @name}
   = link_to _('See it in a nice bubble chart'), stats_path + "/" + @name + "/user_rpms"
 
-%table.table.table-hover.table-condensed.table-responsive
-  %thead
-    %tr.warning
-      %th= sortable _('Rpm')
-      %th= _('Upstream')
-      %th= _('Rawhide')
-      %th= _('Git Commits')
+.table-responsive
+  %table.table.table-hover.table-condensed
+    %thead
+      %tr.warning
+        %th= sortable _('Rpm')
+        %th= _('Upstream')
+        %th= _('Rawhide')
+        %th= _('Git Commits')
 
-  %tbody
-    - @rpms.each do |rpm|
-      %tr
-        %td= link_to rpm.name, fedorarpm_path(rpm.name)
-        %td= rpm.ruby_gem.version if rpm.ruby_gem
-        %td= rpm.version_for 'Rawhide'
-        %td= rpm.commits
+    %tbody
+      - @rpms.each do |rpm|
+        %tr
+          %td= link_to rpm.name, fedorarpm_path(rpm.name)
+          %td= rpm.ruby_gem.version if rpm.ruby_gem
+          %td= rpm.version_for 'Rawhide'
+          %td= rpm.commits

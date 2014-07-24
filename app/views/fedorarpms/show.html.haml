@@ -60,17 +60,18 @@
           =@rpm.description
 
     .tab-pane.fade#versions
-      %table.table.table-hover.table-condensed.table-responsive
-        %thead
-          %tr.warning
-            -FedoraRpm.fedora_versions.each do |t, g|
-              %th= t
-            %th= _('Gem Version')
-        %tbody
-          %tr
-            -FedoraRpm.fedora_versions.each do |t, g|
-              %td= @rpm.version_for(t)
-            %td= @rpm.ruby_gem.version
+      .table-responsive
+        %table.table.table-hover.table-condensed
+          %thead
+            %tr.warning
+              -FedoraRpm.fedora_versions.each do |t, g|
+                %th= t
+              %th= _('Gem Version')
+          %tbody
+            %tr
+              -FedoraRpm.fedora_versions.each do |t, g|
+                %td= @rpm.version_for(t)
+              %td= @rpm.ruby_gem.version
 
     .tab-pane.fade#dependencies
       %h3
@@ -82,74 +83,79 @@
           - else
             %label= _('Dependencies:')
 
-            %table.table.table-hover.table-condensed.table-responsive
-              %thead
-                %tr.warning
-                  %th= _('Package')
-                  -FedoraRpm.fedora_versions.each do |t, g|
-                    - if g == 'master'
-                      %th= 'Rawhide'
-                    - else
-                      %th= g
-                  %th= _('Upstream')
-              %tbody
-                - @dependencies.each do |d|
-                  %tr
-                    %td= link_to d.name, fedorarpm_path(d.name)
+            .table-responsive
+              %table.table.table-hover.table-condensed
+                %thead
+                  %tr.warning
+                    %th= _('Package')
                     -FedoraRpm.fedora_versions.each do |t, g|
-                      %td= d.version_for(t)
-                    %td= d.ruby_gem.version
+                      - if g == 'master'
+                        %th= 'Rawhide'
+                      - else
+                        %th= g
+                    %th= _('Upstream')
+                %tbody
+                  - @dependencies.each do |d|
+                    %tr
+                      %td= link_to d.name, fedorarpm_path(d.name)
+                      -FedoraRpm.fedora_versions.each do |t, g|
+                        %td= d.version_for(t)
+                      %td= d.ruby_gem.version
+
         %div.col-md-6
           - if @dependents.blank?
             %label= _('No dependents')
           - else
             %label= _('Dependents:')
 
-            %table.table.table-hover.table-condensed.table-responsive
-              %thead
-                %tr.warning
-                  %th= _('Package')
-                  -FedoraRpm.fedora_versions.each do |t, g|
-                    - if g == 'master'
-                      %th= 'Rawhide'
-                    - else
-                      %th= g
-                  %th= _('Upstream')
-              %tbody
-                - @dependents.each do |d|
-                  %tr
-                    %td= link_to d.name, fedorarpm_path(d.name)
+            .table-responsive
+              %table.table.table-hover.table-condensed
+                %thead
+                  %tr.warning
+                    %th= _('Package')
                     -FedoraRpm.fedora_versions.each do |t, g|
-                      %td= d.version_for(t)
-                    %td= d.ruby_gem.version
+                      - if g == 'master'
+                        %th= 'Rawhide'
+                      - else
+                        %th= g
+                    %th= _('Upstream')
+                %tbody
+                  - @dependents.each do |d|
+                    %tr
+                      %td= link_to d.name, fedorarpm_path(d.name)
+                      -FedoraRpm.fedora_versions.each do |t, g|
+                        %td= d.version_for(t)
+                      %td= d.ruby_gem.version
 
     .tab-pane.fade#bugs
       - if @rpm.bugs.blank?
         %h4 No bugs found!
       - else
-        %table.table.table-hover.table-condensed.table-responsive
-          %thead
-            %tr.warning
-              %th= _('ID')
-              %th= _('Title')
-          %tbody
-            - @rpm.bugs.each do |b|
-              %tr
-                %td
-                  = link_to b.bz_id, b.url
-                %td
-                  = b.name.truncate(60)
+        .table-responsive
+          %table.table.table-hover.table-condensed
+            %thead
+              %tr.warning
+                %th= _('ID')
+                %th= _('Title')
+            %tbody
+              - @rpm.bugs.each do |b|
+                %tr
+                  %td
+                    = link_to b.bz_id, b.url
+                  %td
+                    = b.name.truncate(60)
 
     .tab-pane.fade#builds
-      %table.table.table-hover.table-condensed.table-responsive
-        %thead
-          %tr.warning
-            %th= _('Build ID')
-            %th= _('Title')
-        %tbody
-          - @rpm.koji_builds.each do |b|
-            %tr
-              %td
-                = link_to b.build_id, b.build_url
-              %td
-                = b.name.truncate(60)
+      .table-responsive
+        %table.table.table-hover.table-condensed
+          %thead
+            %tr.warning
+              %th= _('Build ID')
+              %th= _('Title')
+          %tbody
+            - @rpm.koji_builds.each do |b|
+              %tr
+                %td
+                  = link_to b.build_id, b.build_url
+                %td
+                  = b.name.truncate(60)

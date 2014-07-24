@@ -1,20 +1,20 @@
 %h2 Ruby Gems
+.table-responsive
+  %table.table.table-hover.table-condensed
+    %thead
+      %tr.warning
+        %th= sortable 'name', 'Name'
+        %th= 'Gem Version'
+        %th= sortable 'downloads', 'Downloads'
+        %th= 'Rpm'
 
-%table.table.table-hover.table-condensed
-  %thead
-    %tr.warning
-      %th= sortable 'name', 'Name'
-      %th= 'Gem Version'
-      %th= sortable 'downloads', 'Downloads'
-      %th= 'Rpm'
-
-  %tbody
-    - @gems.each do |gem|
-      %tr
-        %td= link_to gem.name, rubygem_path(gem.name)
-        %td= gem.version
-        %td= number_with_delimiter(gem.downloads)
-        %td= link_to gem.fedora_rpm.name, fedorarpm_path(gem.fedora_rpm.name)
+    %tbody
+      - @gems.each do |gem|
+        %tr
+          %td= link_to gem.name, rubygem_path(gem.name)
+          %td= gem.version
+          %td= number_with_delimiter(gem.downloads)
+          %td= link_to gem.fedora_rpm.name, fedorarpm_path(gem.fedora_rpm.name)
 
 %div.pagination
   = will_paginate @gems
