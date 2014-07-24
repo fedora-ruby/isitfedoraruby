@@ -1,12 +1,12 @@
 .bs-callout-info.bs-callout
-  %h4= @rpm.name
+  %h2= @rpm.name
   %p
   - unless @rpm.summary.blank?
     = "#{@rpm.summary}"
 
 -#  = link_to _('Timeline (Bugs and Versions)'), stats_path + "/" + @name + "/timeline"
 
-.span12.well
+.span12
   %ul.nav.nav-tabs#fedorarpm-show{role: 'tablist'}
     %li.active
       = link_to 'Basic info', '#info', { data: {toggle: 'tab'}, role: 'tab' }
@@ -73,7 +73,7 @@
             %td= @rpm.ruby_gem.version
 
     .tab-pane.fade#dependencies
-      %h2
+      %h3
         = link_to _('Dependency Tree'), :controller => 'fedorarpms', :action => 'full_deps'
       .row
         %div.col-md-6

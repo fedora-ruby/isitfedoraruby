@@ -4,15 +4,11 @@
     %title= "isitFedoraRuby - #{@page_title}"
     %meta{ :content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport" }
     = stylesheet_link_tag "application", :media => "all"
-    -#= stylesheet_link_tag "d3-cluster", :media => "all"
     = javascript_include_tag "application"
-    -#= javascript_include_tag "d3.v2.js"
-    -#= javascript_include_tag "timeline-min.js"
-    -#= javascript_include_tag "typeahead.bundle.js"
     = csrf_meta_tags
 
   %body
     = render 'layouts/header'
-    %div.container
+    .container
       = yield
       = render 'layouts/footer'
