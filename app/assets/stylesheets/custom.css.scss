@@ -14,7 +14,7 @@ body {
   font-family: "Liberation Sans", "Lucida Grande", "Luxi Sans", "Bitstream Vera Sans", helvetica, verdana, arial, sans-serif;
   padding-top: 70px;
 //  line-height: 1.42857;
-  margin: 0px;
+//  margin: 0px;
   font-size: 14px;
   color: rgb(90, 90, 90);
 }
@@ -50,7 +50,8 @@ $colHighlight   : #dce7f6;
       > a {
         color: $colDefault;
         &:hover,  &:focus {
-          color: $colHighlight; }}}
+          color: $colHighlight;
+          background-color: $bgHighlight; }}}
     > .active {
       > a, > a:hover, > a:focus {
         color: $colHighlight;
@@ -92,6 +93,12 @@ $colHighlight   : #dce7f6;
 
 .error{
   color: red;
+}
+
+@media (min-width: 768px) and (max-width: 993px) {
+  .navbar-brand {
+    display: none
+  }
 }
 
 section {
@@ -136,6 +143,7 @@ h1 {
 h2 {
   letter-spacing: -1px;
   margin-bottom: 30px;
+//  text-align: center;
   font-weight: normal;
   color: $gray-light;
 }
@@ -260,18 +268,21 @@ footer {
 }
 
 .tt-dropdown-menu {
-  margin-top: 12px;
-  padding: 2px 0;
   background-color: #fff;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
   -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
   -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
   box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
 
+#search_field {
+//  margin: 10px;
+}
+
 .tt-suggestion {
-  padding: 1px 20px;
+  padding: 1px 10px;
 }
 
 .tt-suggestion.tt-cursor {
