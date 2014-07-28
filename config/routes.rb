@@ -2,7 +2,6 @@ Isitfedoraruby::Application.routes.draw do
 
   root to: 'home#show'
 
-  get 'contribute', to: 'static_pages#contribute'
   get 'about', to: 'static_pages#about'
   get 'contact', to: 'static_pages#contact'
 

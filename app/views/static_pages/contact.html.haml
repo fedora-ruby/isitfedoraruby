@@ -1,3 +1,9 @@
-%h1= _('Contact')
-%p= _('If you want to contact the Fedora Ruby community, send an e-mail to the <a href=mailto:ruby-sig@lists.fedoraproject.org>Ruby SIG mailing list</a>.').html_safe
-%p= _('To file a bug against this web application, <a href=https://github.com/zuhao/isitfedoraruby/issues/new>create a new issue</a> in the github repository.').html_safe
+%h1 Contact
+%p
+  If you want to contact the Fedora Ruby community, send an e-mail to the
+  = link_to 'Ruby SIG mailing list', 'mailto:ruby-sig@lists.fedoraproject.org'
+  or visit the
+  = link_to 'irc channel', 'http://webchat.freenode.net/?channels=#fedora-ruby', target: 'blank'
+  %em
+    \#fedora-ruby
+  on freenode.net
