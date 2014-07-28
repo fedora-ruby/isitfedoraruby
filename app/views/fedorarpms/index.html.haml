@@ -16,14 +16,10 @@
 
     %tbody
       - @rpms.each do |rpm|
-        - if rpm.up_to_date?
-          %tr
+        %tr{class: rpm.up_to_date? ? 'success' : 'danger'}
           %td= link_to rpm.shortname.truncate(35), fedorarpm_path(rpm.name)
           -FedoraRpm.fedora_versions.each do |t, g|
-            - unless rpm.up_to_date?
-              %td.warning= rpm.version_for(t)
-            - else
-              %td= rpm.version_for(t)
+            %td= rpm.version_for(t)
           %td= rpm.ruby_gem.version
           %td= rpm.commits
           %td= rpm.last_commit_date_in_words

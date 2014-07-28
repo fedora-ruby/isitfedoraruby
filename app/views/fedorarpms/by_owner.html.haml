@@ -1,6 +1,12 @@
 .bs-callout-active.bs-callout
-  %h2= _('All rubygems maintained by %{name}') % { :name => @name}
-  = link_to _('See it in a nice bubble chart'), stats_path + "/" + @name + "/user_rpms"
+  %h2= _('All rubygems maintained by user %{name}') % { :name => @name}
+  %p Total: #{@rpms.count}
+  %p Up to date: #{@uptodate.count}
+  %p Outdated: #{@outdated.count}
+  %p
+    = link_to _('See it in a nice bubble chart'), stats_path + "/" + @name + "/user_rpms"
+  %p
+    Green lines indicate rpms that are up to date, red ones are outdated.
 
 .table-responsive
   %table.table.table-hover.table-condensed
@@ -13,7 +19,7 @@
 
     %tbody
       - @rpms.each do |rpm|
-        %tr
+        %tr{class: rpm.up_to_date? ? 'success' : 'danger'}
           %td= link_to rpm.name, fedorarpm_path(rpm.name)
           %td= rpm.ruby_gem.version if rpm.ruby_gem
           %td= rpm.version_for 'Rawhide'

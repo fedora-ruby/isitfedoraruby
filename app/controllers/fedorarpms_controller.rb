@@ -50,6 +50,8 @@ class FedorarpmsController < ApplicationController
   def by_owner
     @name = params[:id]
     @rpms = FedoraRpm.where('owner LIKE ?', @name)
+    @uptodate = @rpms.select { |rpm| rpm.up_to_date? }
+    @outdated = @rpms.reject { |rpm| rpm.up_to_date? }
   end
 
   def badge
