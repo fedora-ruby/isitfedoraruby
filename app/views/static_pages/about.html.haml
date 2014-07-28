@@ -1,14 +1,54 @@
-%p= _('IsItFedoraRuby is a web-application (a Rails application) for keeping track of the Fedora/Ruby integration, especially gem->rpm conversion, documentation, and success stories.')
-%p= _('The project was started on 2012 as a <a href=https://fedoraproject.org/wiki/GSOC_2012/Student_Application_Zuhao/IsItFedoraRuby>Google Summer Of Code project</a> by Zuhao, and it is growing to include Ruby Special Interest Group.').html_safe
+%br
+%p
+  IsItFedoraRuby is a Ruby on Rails web application that keeps track of the
+  Fedora/Ruby integration, especially the gem -> rpm conversion,
+  documentation, and success stories.
 
-%h3= _('Ruby Special Interest Group')
-%p= _('A SIG for people who are interested in improving the state of Ruby in Fedora. This includes packaging Ruby libraries and applications, setting and improving standards for packaging them as RPMs and maintaining Ruby packages for Fedora.')
-%p= _('Packaging Ruby libraries and applications for Fedora is an ongoing process. We hope that this situation will improve dramatically over the next few months; that means that you, dear reader, can become a hero by packaging your favorite piece of Ruby code as an RPM and submitting it to Fedora.')
+%h3 Project history
+%p
+  The project was started in 2012 as a
+  = link_to 'Google Summer Of Code project', 'https://fedoraproject.org/wiki/GSOC_2012/Student_Application_Zuhao/IsItFedoraRuby', target: 'blank'
+  and later the same year was picked by several high school students for the
+  = link_to 'Google Code In', 'http://mo.morsi.org/blog/node/378', target: 'blank'
+  program.
 
-%h3= _('Please Contribute!')
-%p= _('As this project is still in its early stage, please feel free to contribute any code or ideas to make it better.')
-%p= _('For more info, please check out the <a href=http://github.com/zuhao/isitfedoraruby>code</a> or visit the <a href=https://fedoraproject.org/wiki/Ruby_SIG>Ruby SIG</a> wiki page.').html_safe
-%p= _('Silk Icons by <a href=http://www.famfamfam.com/lab/icons/silk/>famfamfam</a>.').html_safe
+  In 2014 it was again selected as a
+  = link_to 'Google Summer Of Code project', 'https://fedoraproject.org/wiki/GSOC_2014/Student_Application_Axilleas/Isitfedoraruby', target: 'blank'
+  , the code got cleaned up to reflect changes in Fedora infrastructure
+  and new features were added.
+
+%h3 Open Source
+%p
+  The web application is fully open source, distributed under the MIT license.
+
+%h3 Ruby Special Interest Group
+%p
+  There exists a
+  = link_to 'Fedora SIG', 'https://fedoraproject.org/wiki/Ruby_SIG', target: 'blank'
+  for people who are interested in improving the state of Ruby in
+  Fedora. This includes
+  = link_to 'packaging', 'https://fedoraproject.org/wiki/Packaging:Ruby', target: 'blank'
+  Ruby libraries and applications, setting and improving standards for
+  packaging them as RPMs and maintaining Ruby packages for Fedora.
+%p
+  Packaging Ruby libraries and applications for Fedora is an ongoing process.
+
+%h3 Contribute
+
+%h4 IsItFedoraRuby
+%p
+  Every contribution, from bug reports to new features is welcomed. The
+  source code is hosted on
+  = link_to 'Github,', 'https://github.com/axilleas/isitfedoraruby', target: 'blank'
+  feel free to hack it!
+%p
+%h4 Become a Fedora packager
+%p
+  There is no better way to contribute to the Ruby community in Fedora
+  other than
+  = link_to 'becoming a packager.', 'http://fedoraproject.org/wiki/PackageMaintainers/Join', target: 'blank'
+
+%p
 - unless _('translator-credits') == 'translator-credits'
   %p= _('Is It Fedora Ruby has been translated into your language by:')
   %p= _('translator-credits')
