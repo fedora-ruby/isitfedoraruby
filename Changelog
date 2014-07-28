@@ -1,7 +1,12 @@
+v 0.10.1
+
+- Refactor static pages
+
 v 0.10.0
 
 - Show version/revision in footer
 - Major site view refactor
+- Site is now fully responsive
 
 v 0.9.1
 
