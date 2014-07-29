@@ -11,12 +11,12 @@ feature 'GET/ Fedora Rpms index page' do
   end
 
   scenario 'has a table' do
-    expect(page.find(:xpath, "//table"))
+    expect(page.find(:xpath, '//table'))
   end
 
 end
 
-feature 'GET/ Fedora Rpm rubygem-foo' do
+feature 'GET/ Fedora Rpm rubygem-foo Basic Info' do
 
   background do
   end
@@ -62,6 +62,12 @@ feature 'GET/ Fedora Rpm rubygem-foo' do
     @rpm = create(:rpm_last_commit_message_not_set)
     visit 'fedorarpms/rubygem-foo'
     expect(page).to_not have_content 'Last commit message:'
+  end
+
+  scenario 'show SPEC file url' do
+    create(:rubygem_foo)
+    visit 'fedorarpms/rubygem-foo'
+    expect(page).to have_content 'SPEC file:'
   end
 
 end

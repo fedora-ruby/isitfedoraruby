@@ -38,7 +38,7 @@ describe FedoraRpm do
   end
 
   describe 'source files of rubygem-foo' do
-    it 'base uri points to pkgs.fp.o gitweb' do
+    it 'base uri points to pkgs.fp.o' do
       expect(rpm.base_uri).to eq 'http://pkgs.fedoraproject.org/cgit/'
     end
 
@@ -46,6 +46,11 @@ describe FedoraRpm do
       base_uri = 'http://pkgs.fedoraproject.org/cgit/'
       expect(rpm.source_uri).to eq "#{base_uri}#{rpm.name}.git"
     end
+
+    it 'spec url points spec file at pkgs.fp.o' do
+      expect(rpm.spec_uri).to eq 'http://pkgs.fedoraproject.org/cgit/rubygem-foo.git/tree/rubygem-foo.spec'
+    end
+
   end
 
   describe '#to_param' do
@@ -58,14 +63,6 @@ describe FedoraRpm do
     it 'returns foo if rpm name is rubygem-foo' do
       shortname = rpm.name.gsub(/rubygem-/, '')
       expect(shortname).to eq 'foo'
-    end
-  end
-
-  describe '#rawhide_version' do
-    it 'returns the latest fedora version as a number' do
-      page = Nokogiri.HTML(open(Rails.root + \
-                                'spec/support/fedora_rawhide.html'))
-      expect(page.text.match(/\d{2}/)[0].to_i).to eq 21
     end
   end
 

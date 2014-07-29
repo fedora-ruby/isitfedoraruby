@@ -83,6 +83,10 @@ class FedoraRpm < ActiveRecord::Base
     'http://pkgs.fedoraproject.org/cgit/'
   end
 
+  def spec_uri
+    "#{base_uri}#{name}.git/tree/#{name}.spec"
+  end
+
   # Get and store the commits metadata in database.
   def commits_metadata(name)
     pkg = Pkgwat.get_changelog(name)

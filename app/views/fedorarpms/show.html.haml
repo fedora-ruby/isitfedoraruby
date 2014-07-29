@@ -32,8 +32,11 @@
         - else
           %span.label.label-danger= _('No')
       %p
-        Package Source Code:
+        Gitweb repository:
         = link_to @rpm.source_uri, @rpm.source_uri
+      %p
+        SPEC file:
+        = link_to @rpm.spec_uri, @rpm.spec_uri
       - unless @rpm.homepage.blank? || @rpm.homepage == @rpm.source_uri
         %p
           Upstream url:
