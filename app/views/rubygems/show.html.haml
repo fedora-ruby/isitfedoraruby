@@ -24,7 +24,7 @@
 
   .col-md-6
     - unless @dependencies.blank?
-      %h4 Depends on
+      %h4= "Depends on #{@dependencies.count} gems"
       .table-responsive
         %table.table.table-hover.table-condensed
           %thead

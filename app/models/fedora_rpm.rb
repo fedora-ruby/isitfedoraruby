@@ -79,28 +79,6 @@ class FedoraRpm < ActiveRecord::Base
     end
   end
 
-  def json_dependencies(packages = [])
-    children = []
-    dependency_packages.each do |p|
-      unless packages.include?(p)
-        packages << p
-        children << p.json_dependencies(packages)
-      end
-    end
-    { name: shortname, children: children }
-  end
-
-  def json_dependents(packages = [])
-    children = []
-    dependent_packages.each do |p|
-      unless packages.include?(p)
-        packages << p
-        children << p.json_dependents(packages)
-      end
-    end
-    { name: shortname, children: children }
-  end
-
   def base_uri
     'http://pkgs.fedoraproject.org/cgit/'
   end
@@ -222,16 +200,54 @@ class FedoraRpm < ActiveRecord::Base
     rpm_spec = open(spec_url).read
     rpm_spec.split("\n").each do |line|
       mr = line.match(/^Requires:\s*rubygem\(([^\s]*)\)\s*(.*)$/)
+      env = 'runtime'
       if mr.nil?
         mr = line.match(/^BuildRequires:\s*rubygem\(([^\s]*)\)\s*(.*)$/)
+        env = 'development'
       end
       if mr
         d = Dependency.new
         d.dependent = mr.captures.first
-        d.dependent_version = mr.captures.last
+        d.dependent_version = mr.captures.last.gsub(/(%{version})/, retrieve_version('Rawhide'))
+        d.environment = env
         dependencies << d
       end
     end
+  end
+
+  def json_dependencies(packages = [])
+    children = []
+    dependency_packages.each do |p|
+      unless packages.include?(p)
+        packages << p
+        children << p.json_dependencies(packages)
+      end
+    end
+    { name: shortname, children: children }
+  end
+
+  def json_dependents(packages = [])
+    children = []
+    dependent_packages.each do |p|
+      unless packages.include?(p)
+        packages << p
+        children << p.json_dependents(packages)
+      end
+    end
+    { name: shortname, children: children }
+  end
+
+  # Returns an array of dependencies in a FedoraRpm format
+  def dependency_packages
+    dependencies.map do |d|
+      FedoraRpm.where(name: "rubygem-#{d.dependent}").to_a
+    end.compact.flatten
+  end
+
+  def dependent_packages
+    Dependency.where(dependent: shortname).map do |d|
+      d.package if d.package.is_a?(FedoraRpm)
+    end.compact
   end
 
   def retrieve_gem
@@ -342,18 +358,6 @@ class FedoraRpm < ActiveRecord::Base
     else
       where('name LIKE ?', 'rubygem-' + search.strip)
     end
-  end
-
-  def dependency_packages
-    dependencies.map do |d|
-      FedoraRpm.where(name: "rubygem-#{d.dependent}").to_a
-    end.compact.flatten
-  end
-
-  def dependent_packages
-    Dependency.where(dependent: shortname).map do |d|
-      d.package if d.package.is_a?(FedoraRpm)
-    end.compact
   end
 
   def last_commit_date_in_words

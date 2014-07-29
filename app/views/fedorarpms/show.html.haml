@@ -75,19 +75,21 @@
 
     .tab-pane.fade#dependencies
       %h3
-        = link_to _('Dependency Tree'), :controller => 'fedorarpms', :action => 'full_deps'
+        = link_to 'Dependency Tree', controller: 'fedorarpms',
+                                     action: 'full_deps'
       .row
-        %div.col-md-6
+        .col-md-6
           - if @dependencies.blank?
-            %label= _('No dependencies')
+            %h4 No dependencies
           - else
-            %label= _('Dependencies:')
+            %h4= "Dependencies: #{@dependencies.count}"
 
             .table-responsive
               %table.table.table-hover.table-condensed
                 %thead
                   %tr.warning
-                    %th= _('Package')
+                    %th Package
+                    %th Environment
                     -FedoraRpm.fedora_versions.each do |t, g|
                       - if g == 'master'
                         %th= 'Rawhide'
@@ -98,15 +100,16 @@
                   - @dependencies.each do |d|
                     %tr
                       %td= link_to d.name, fedorarpm_path(d.name)
+                      %td= @rpm.dependencies.find_by(dependent: d.shortname).environment
                       -FedoraRpm.fedora_versions.each do |t, g|
                         %td= d.version_for(t)
                       %td= d.ruby_gem.version
 
         %div.col-md-6
           - if @dependents.blank?
-            %label= _('No dependents')
+            %h4 No dependents
           - else
-            %label= _('Dependents:')
+            %h4= "Dependents: #{@dependents.count}"
 
             .table-responsive
               %table.table.table-hover.table-condensed

@@ -3,6 +3,11 @@ v 0.10.1
 - Refactor static pages
 - Colorize columns of outdated packages
 - Bump rawhide version to 22
+- Add gem count to dependency tables
+- Refactor dependency environment retrieval
+- Add environment column to dependency column
+- Add package statistics in owner page
+
 
 v 0.10.0
 
