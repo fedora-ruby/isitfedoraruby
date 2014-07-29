@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://admin.fedoraproject.org/pkgdb/api/collections?pattern=master
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 29 Jul 2014 08:17:19 GMT
+      Server:
+      - Apache/2.2.15 (Red Hat)
+      Apptime:
+      - D=8670
+      Appserver:
+      - pkgdb02.phx2.fedoraproject.org
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '235'
+      X-Varnish:
+      - '743004049'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Proxytime:
+      - D=10919
+      Proxyserver:
+      - proxy01.phx2.fedoraproject.org
+    body:
+      encoding: UTF-8
+      string: "{\n  \"output\": \"ok\", \n  \"collections\": [\n    {\n      \"version\":
+        \"devel\", \n      \"status\": \"Under Development\", \n      \"dist_tag\":
+        \".fc22\", \n      \"branchname\": \"master\", \n      \"koji_name\": \"rawhide\",
+        \n      \"name\": \"Fedora\"\n    }\n  ]\n}"
+    http_version: 
+  recorded_at: Tue, 29 Jul 2014 08:16:02 GMT
+recorded_with: VCR 2.9.2
