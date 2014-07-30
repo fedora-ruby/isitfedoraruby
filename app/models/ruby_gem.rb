@@ -24,7 +24,7 @@ class RubyGem < ActiveRecord::Base
   has_many :dependencies, -> { order 'created_at desc' }, as: :package,
                                                           dependent: :destroy
   has_many :gem_versions, dependent: :destroy
-  scope :most_popular, -> { order 'downloads desc' }
+  scope :most_popular, -> { order 'downloads is null, downloads desc' }
 
   def to_param
     name

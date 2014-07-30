@@ -7,6 +7,7 @@ v 0.10.1
 - Refactor dependency environment retrieval
 - Add environment column to dependency column
 - Add package statistics in owner page
+- Fix sorting bug for postgres
 
 
 v 0.10.0
