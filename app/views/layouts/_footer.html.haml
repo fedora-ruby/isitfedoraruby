@@ -4,8 +4,13 @@
     = Git::VERSION
     @
   %small
-    = link_to Git::REVISION,
-      "https://github.com/axilleas/isitfedoraruby/commit/#{Git::REVISION}"
+    = succeed '-' do
+      = link_to "#{Git::REVISION} ",
+        "https://github.com/axilleas/isitfedoraruby/commit/#{Git::REVISION}"
+  %small
+    = precede '-' do
+      App last updated
+      = Git::DATE
   %nav
     %ul
       %li= link_to _('Contact'), contact_path
