@@ -30,6 +30,7 @@
           %thead
             %tr.warning
               %th Package
+              %th Environment
               %th Gem Version
               - FedoraRpm.fedora_versions.each do |t, g|
                 %th= t
@@ -37,6 +38,7 @@
             - @dependencies.each do |d|
               %tr
                 %td= link_to d.name, rubygem_path(d.name)
+                %td= @gem.dependencies.find_by(dependent: d.to_param).environment
                 %td= d.version
                 - FedoraRpm.fedora_versions.each do |t, g|
                   %td= d.fedora_rpm.version_for(t)
