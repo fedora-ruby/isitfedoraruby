@@ -200,20 +200,26 @@ class FedoraRpm < ActiveRecord::Base
 
   def retrieve_dependencies
     dependencies.clear
+
+    # Runtime (Requires)
+    cmd = `repoquery --repoid=rawhide --requires --resolve #{name} --qf="%{NAME}"`
+    cmd.lines.map(&:chomp).select { |v| v.start_with? 'rubygem-' }.each do |line|
+      d = Dependency.new
+      d.dependent = line.split('-', 2).last
+      d.environment = 'runtime'
+      dependencies << d
+    end
+
+    # Development (BuildRequires)
     spec_url = "#{base_uri}#{name}.git/plain/#{name}.spec?h=master"
     rpm_spec = open(spec_url).read
     rpm_spec.split("\n").each do |line|
-      mr = line.match(/^Requires:\s*rubygem\(([^\s]*)\)\s*(.*)$/)
-      env = 'runtime'
-      if mr.nil?
-        mr = line.match(/^BuildRequires:\s*rubygem\(([^\s]*)\)\s*(.*)$/)
-        env = 'development'
-      end
+      mr = line.match(/^BuildRequires:\s*rubygem\(([^\s]*)\)\s*(.*)$/)
       if mr
         d = Dependency.new
         d.dependent = mr.captures.first
         d.dependent_version = mr.captures.last.gsub(/(%{version})/, retrieve_version('Rawhide'))
-        d.environment = env
+        d.environment = 'development'
         dependencies << d
       end
     end
