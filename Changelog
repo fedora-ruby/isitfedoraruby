@@ -8,7 +8,8 @@ v 0.10.1
 - Add environment column to dependency column
 - Add package statistics in owner page
 - Fix sorting bug for postgres
-
+- Fix search bug for postgres
+- Add environment column to gem show
 
 v 0.10.0
 
