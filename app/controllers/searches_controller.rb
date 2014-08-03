@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
   def index
     @page_title = 'Search'
     searchphrase = params[:id]
-    @results = RubyGem.where('name LIKE ?', "%#{searchphrase}%").paginate(page: params[:page], per_page: 50, group: 'name', order: 'length(name) asc')
+    @results = RubyGem.where('name LIKE ?', "%#{searchphrase}%").paginate(page: params[:page], per_page: 50, order: 'length(name) asc')
     @suggests = []
     if @results == []
       all_gems = RubyGem.select('name').map { |x| x.name }
