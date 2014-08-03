@@ -202,7 +202,8 @@ class FedoraRpm < ActiveRecord::Base
     dependencies.clear
 
     # Runtime (Requires)
-    cmd = `repoquery --repoid=rawhide --requires --resolve #{name} --qf="%{NAME}"`
+    query = "repoquery --repoid=rawhide --requires --resolve #{name} --qf=\"%{NAME}\""
+    cmd = AwesomeSpawn.run(query).output
     cmd.lines.map(&:chomp).select { |v| v.start_with? 'rubygem-' }.each do |line|
       d = Dependency.new
       d.dependent = line.split('-', 2).last
