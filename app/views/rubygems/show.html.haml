@@ -18,6 +18,9 @@
         Source Code:
         =link_to @gem.source_uri, @gem.source_uri
     %p
+      rubygems.org:
+      =link_to @gem.rubygems_uri, @gem.rubygems_uri, target: 'blank'
+    %p
       Version: <strong>#{@gem.version}</strong>
     %p
       Total Downloads: #{number_with_delimiter(@gem.downloads)}

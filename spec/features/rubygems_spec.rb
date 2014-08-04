@@ -23,4 +23,10 @@ feature 'GET/ Gem foo' do
     visit 'rubygems/foo'
     expect(page).to_not have_content "Source Code: "
   end
+
+  scenario 'show rubygems.org uri' do
+    @gem = create(:foo)
+    visit 'rubygems/foo'
+    expect(page).to have_content 'rubygems.org: https://rubygems.org/gems/foo'
+  end
 end

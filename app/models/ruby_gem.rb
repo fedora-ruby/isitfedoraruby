@@ -26,6 +26,9 @@ class RubyGem < ActiveRecord::Base
   has_many :gem_versions, dependent: :destroy
   scope :most_popular, -> { order 'downloads is null, downloads desc' }
 
+  validates :name, uniqueness: true
+  validates :name, presence: true
+
   def to_param
     name
   end
@@ -42,6 +45,10 @@ class RubyGem < ActiveRecord::Base
     # If gem is not found on RubyGems.org, a string will be returned, saying
     #   "This rubygem could not be found."
     !metadata.is_a?(String)
+  end
+
+  def rubygems_uri
+    "https://rubygems.org/gems/#{name}"
   end
 
   def retrieve_metadata
@@ -138,9 +145,4 @@ class RubyGem < ActiveRecord::Base
       description
     end
   end
-
-  private
-
-  validates :name, uniqueness: true
-  validates :name, presence: true
 end
