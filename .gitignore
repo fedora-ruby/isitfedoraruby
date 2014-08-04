@@ -17,3 +17,4 @@ config/unicorn.rb
 .ruby-version
 .ruby-gemset
 tags
+*.sql
