@@ -32,7 +32,6 @@ body {
 
 /* Navbar colors */
 
-
 $bgDefault      : #3264a3;
 $bgHighlight    : #1c507d;
 $colDefault     : #d1d8e2;
@@ -99,6 +98,13 @@ $colHighlight   : #dce7f6;
 @media (min-width: 768px) and (max-width: 993px) {
   .navbar-brand {
     display: none
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-form {
+    padding: 10px 10% 10px 100px;
+    margin: 0px 40% 0px -90px;
   }
 }
 
