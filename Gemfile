@@ -39,7 +39,7 @@ gem 'versionomy'
 gem 'gems'
 gem 'pkgwat'
 gem 'bicho'
-gem 'ruby-bugzilla'
+gem 'active_bugzilla'
 gem 'text'
 
 gem 'whenever', :require => false

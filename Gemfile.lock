@@ -33,6 +33,10 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    active_bugzilla (1.0.1)
+      activemodel
+      activesupport
+      dirty_hashy
     activemodel (4.0.8)
       activesupport (= 4.0.8)
       builder (~> 3.1.0)
@@ -107,6 +111,8 @@ GEM
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     diffy (3.0.5)
+    dirty_hashy (0.2.1)
+      activesupport
     docile (1.1.5)
     erubis (2.7.0)
     execjs (2.2.1)
@@ -131,8 +137,6 @@ GEM
       mime-types (~> 1.15)
       posix-spawn (~> 0.3.6)
     growl (1.0.3)
-    gruff (0.5.1)
-      rmagick
     guard (2.6.1)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -272,10 +276,6 @@ GEM
       powerpack (~> 0.0.6)
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.4)
-    ruby-bugzilla (0.5.2)
-      gruff
-      highline
-      rmagick
     ruby-progressbar (1.5.1)
     ruby_parser (3.6.1)
       sexp_processor (~> 4.1)
@@ -354,6 +354,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_bugzilla
   annotate
   bicho
   bootstrap-sass
@@ -391,7 +392,6 @@ DEPENDENCIES
   rmagick!
   rspec-rails
   rubocop
-  ruby-bugzilla
   ruby_parser
   sass-rails
   selenium-webdriver
