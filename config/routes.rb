@@ -22,6 +22,8 @@ Isitfedoraruby::Application.routes.draw do
 
   resources :rubygems, only: [:index, :show]
 
+  resources :bugs, only: [:index, :show]
+
   resources :stats, only: [:index] do
     get :gemfile_tool, on: :collection
     get :user_rpms
