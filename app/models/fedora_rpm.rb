@@ -11,13 +11,12 @@
 #  owner               :string(255)
 #  last_committer      :string(255)
 #  last_commit_date    :datetime
-#  last_commit_sha     :string(255)
 #  homepage            :string(255)
 #  ruby_gem_id         :integer
 #  commits             :integer
 #  owner_email         :string(255)
-#  summary             :text(255)
-#  description         :text(255)
+#  summary             :text
+#  description         :text
 #
 
 require 'versionomy'
@@ -38,7 +37,7 @@ class FedoraRpm < ActiveRecord::Base
 
   belongs_to :ruby_gem
   has_many :rpm_versions, dependent: :destroy
-  has_many :bugs, -> { order 'bz_id desc' }, dependent: :destroy
+  has_many :bugs, -> { order 'bugzilla_id desc' }, dependent: :destroy
   has_many :koji_builds, -> { order 'build_id desc' }, dependent: :destroy
   has_many :dependencies, -> { order 'created_at desc' }, as: :package,
                                                           dependent: :destroy
@@ -269,7 +268,7 @@ class FedoraRpm < ActiveRecord::Base
     open_bugs.reject { |b| b['release'].match(/EPEL/) }.each do |b|
       bug = Bug.new
       bug.name = b['description']
-      bug.bz_id = b['id']
+      bug.bugzilla_id = b['id']
       bug.last_updated = b['last_modified']
       bug.is_review = true if b['name'] =~ /^Review Request.*#{name}\s.*$/
       bugs << bug

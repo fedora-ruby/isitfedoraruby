@@ -4,7 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  name        :string(255)      not null
-#  description :text(255)
+#  description :text
 #  homepage    :string(255)
 #  version     :string(255)
 #  has_rpm     :boolean

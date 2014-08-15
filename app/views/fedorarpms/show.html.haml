@@ -147,7 +147,7 @@
               - @rpm.bugs.each do |b|
                 %tr
                   %td
-                    = link_to b.bz_id, b.url
+                    = link_to b.bugzilla_id, b.url
                   %td
                     = b.name.truncate(60)
 

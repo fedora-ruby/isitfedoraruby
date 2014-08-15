@@ -8,7 +8,7 @@
 #  fedora_version :string(255)
 #  created_at     :datetime
 #  updated_at     :datetime
-#  is_patched     :boolean
+#  patched        :boolean
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

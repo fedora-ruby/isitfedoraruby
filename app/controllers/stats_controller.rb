@@ -32,7 +32,7 @@ class StatsController < ApplicationController
     @stat_id = params[:stat_id]
     @rpm = FedoraRpm.find_by_name(@stat_id)
     @rpm.bugs.each do |bug|
-      result << { content: bug.name, start: bug.bz_id }
+      result << { content: bug.name, start: bug.bugzilla_id }
     end
     @res = result.to_json
     respond_to do |format|

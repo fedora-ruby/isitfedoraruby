@@ -8,7 +8,7 @@
 #  fedora_version :string(255)
 #  created_at     :datetime
 #  updated_at     :datetime
-#  is_patched     :boolean
+#  patched        :boolean
 #
 
 require 'rails_helper'
