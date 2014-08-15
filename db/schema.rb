@@ -11,16 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140712151940) do
+ActiveRecord::Schema.define(version: 20140813172718) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "bugs", force: true do |t|
-    t.string   "name"
-    t.string   "bz_id"
+    t.string   "summary"
+    t.string   "bugzilla_id"
     t.integer  "fedora_rpm_id"
     t.boolean  "is_review"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "last_updated"
+    t.string   "component"
+    t.string   "status"
+    t.boolean  "needs_sponsor"
+    t.string   "assigned_to"
+    t.string   "opened_by"
+    t.datetime "reported_on"
+    t.datetime "modified_on"
   end
 
   create_table "dependencies", force: true do |t|
@@ -34,7 +44,7 @@ ActiveRecord::Schema.define(version: 20140712151940) do
   end
 
   create_table "fedora_rpms", force: true do |t|
-    t.string   "name",                            null: false
+    t.string   "name",                null: false
     t.string   "source_uri"
     t.string   "last_commit_message"
     t.datetime "created_at"
@@ -46,8 +56,8 @@ ActiveRecord::Schema.define(version: 20140712151940) do
     t.integer  "ruby_gem_id"
     t.integer  "commits"
     t.string   "owner_email"
-    t.text     "summary",             limit: 255
-    t.text     "description",         limit: 255
+    t.text     "summary"
+    t.text     "description"
   end
 
   create_table "gem_versions", force: true do |t|
@@ -75,8 +85,8 @@ ActiveRecord::Schema.define(version: 20140712151940) do
   end
 
   create_table "ruby_gems", force: true do |t|
-    t.string   "name",                    null: false
-    t.text     "description", limit: 255
+    t.string   "name",        null: false
+    t.text     "description"
     t.string   "homepage"
     t.string   "version"
     t.boolean  "has_rpm"
