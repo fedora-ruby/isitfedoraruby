@@ -10,8 +10,8 @@ class BugsController < ApplicationController
   private
 
   def sort_column
-    %w(bugzilla_id opened_by assigned_to status reported_on).include?(params[:sort]) ?
-        params[:bugzilla_id] : ''
+    %w(bugzilla_id assigned_to opened_by status reported_on).
+      include?(params[:sort]) ? params[:sort] : 'bugzilla_id'
   end
 
   def sort_direction
