@@ -18,3 +18,4 @@ config/unicorn.rb
 .ruby-gemset
 tags
 *.sql
+env_vars.yml

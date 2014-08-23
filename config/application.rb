@@ -53,6 +53,13 @@ module Isitfedoraruby
     # Version of your assets, change this if you want to expire all your assets
     # config.assets.version = '1.0'
 
+    config.before_configuration do
+      env_file = File.join(Rails.root, 'config', 'env_vars.yml')
+      YAML.load(File.open(env_file)).each do |key, value|
+        ENV[key.to_s] = value
+      end if File.exists?(env_file)
+    end
+
     config.generators do |g|
       g.template_engine :haml
       g.fixture_replacement :factory_girl, dir: 'spec/factories'

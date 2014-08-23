@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/axilleas/isitfedoraruby.png)](https://travis-ci.org/axilleas/isitfedoraruby)
-[![Code Climate](https://codeclimate.com/github/axilleas/isitfedoraruby.png)](https://codeclimate.com/github/axilleas/isitfedoraruby)
-[![Coverage Status](https://coveralls.io/repos/axilleas/isitfedoraruby/badge.png?branch=master)](https://coveralls.io/r/axilleas/isitfedoraruby)
-[![Dependency Status](https://gemnasium.com/axilleas/isitfedoraruby.png)](https://gemnasium.com/axilleas/isitfedoraruby)
+[![Build Status](https://travis-ci.org/fedora-ruby/isitfedoraruby.png)](https://travis-ci.org/fedora-ruby/isitfedoraruby)
+[![Code Climate](https://codeclimate.com/github/fedora-ruby/isitfedoraruby.png)](https://codeclimate.com/github/fedora-ruby/isitfedoraruby)
+[![Coverage Status](https://coveralls.io/repos/fedora-ruby/isitfedoraruby/badge.png?branch=master)](https://coveralls.io/r/fedora-ruby/isitfedoraruby)
+[![Dependency Status](https://gemnasium.com/fedora-ruby/isitfedoraruby.png)](https://gemnasium.com/fedora-ruby/isitfedoraruby)
 
 
 IsItFedoraRuby is a web-application for keeping track of the Fedora/Ruby
@@ -11,7 +11,7 @@ integration, especially `gem -> rpm` conversion.
 
 It started as a Google Summer of Code project in 2012, was later enhanced
 through the Google Code In program and now it is again being developed through
-Google Summer of Code 2014. See the [list of contributors](https://github.com/axilleas/isitfedoraruby/graphs/contributors).
+Google Summer of Code 2014. See the [list of contributors](https://github.com/fedora-ruby/isitfedoraruby/graphs/contributors).
 
 ## Installation
 
@@ -20,7 +20,7 @@ First, make sure you have ruby 2.0+ installed.
 Clone the repository:
 
 ```bash
-git clone https://github.com/axilleas/isitfedoraruby.git
+git clone https://github.com/fedora-ruby/isitfedoraruby.git
 ```
 
 Install gems:
@@ -33,6 +33,13 @@ Run the migrations:
 
 ```bash
 rake db:migrate
+```
+
+Enter your bugzilla credentialls in `env_vars.yml` to be able to import the
+bugs from `bugzilla.redhat.com`:
+```bash
+cp config/env_vars.yml{.example,}
+vim config/env_vars.yml
 ```
 
 Finally, run the following rake task to populate the database:
@@ -60,7 +67,7 @@ rake "fedora:gem:update:gems[7]"
 
 ## Rake tasks
 
-You can see what tasks are currently supported with the following command:
+You can see what custom tasks are currently supported with the following command:
 
 ```
 rake -T | grep fedora
