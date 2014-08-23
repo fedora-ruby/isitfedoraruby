@@ -1,0 +1,42 @@
+%h2= @page_title
+%h4 There are currently #{@bugs.count} bugs
+%p
+= form_tag bugs_path, {method: :get, id: 'selection_form'} do
+  Include:
+  Package Review
+  = check_box_tag "package_review", '1'
+  Needs Sponsor
+  = check_box_tag "needs_sponsor", '1'
+  NEW
+  = check_box_tag "new", '1'
+  ASSIGNED
+  = check_box_tag "assigned", '1'
+  = submit_tag 'Choose', name: nil, id: 'selection_submit'
+%p
+.table-responsive
+  %table.table.table-hover.table-condensed
+    %thead
+      %tr.warning
+        %th= sortable 'bugzilla_id', 'Bugzilla id'
+        %th= 'Component'
+        %th= sortable 'status', 'Status'
+        %th= 'Summary'
+        %th= 'Needs sponsor'
+        %th= sortable 'assigned_to', 'Assigned to'
+        %th= sortable 'opened_by', 'Opened by'
+        %th= sortable 'reported_on', 'Reported on'
+
+    %tbody
+      - @bugs.each do |bug|
+        %tr
+          %td= link_to bug.bugzilla_id, bug.url
+          %td= bug.component
+          %td= bug.status
+          %td= bug.summary.truncate(60)
+          %td= bug.needs_sponsor
+          %td= bug.assigned_to
+          %td= bug.opened_by
+          %td= bug.reported_on
+
+%div.pagination
+  = will_paginate @bugs
