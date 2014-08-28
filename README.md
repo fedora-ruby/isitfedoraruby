@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/axilleas/isitfedoraruby.png)](https://travis-ci.org/axilleas/isitfedoraruby)
+[![Build Status](https://travis-ci.org/fedora-ruby/isitfedoraruby.png)](https://travis-ci.org/fedora-ruby/isitfedoraruby)
 [![Code Climate](https://codeclimate.com/github/axilleas/isitfedoraruby.png)](https://codeclimate.com/github/axilleas/isitfedoraruby)
 [![Coverage Status](https://coveralls.io/repos/axilleas/isitfedoraruby/badge.png?branch=master)](https://coveralls.io/r/axilleas/isitfedoraruby)
 [![Dependency Status](https://gemnasium.com/axilleas/isitfedoraruby.png)](https://gemnasium.com/axilleas/isitfedoraruby)
