@@ -295,51 +295,27 @@ class FedoraRpm < ActiveRecord::Base
   end
 
   def update_commits
-    commits_metadata(name)
-    self.updated_at = Time.now
-    save!
-  rescue => e
-    puts "Updating #{name} failed due to #{e}"
+    yield_and_update { commits_metadata(name) }
   end
 
   def update_dependencies
-    retrieve_dependencies
-    self.updated_at = Time.now
-    save!
-  rescue => e
-    puts "Updating #{name} failed due to #{e}"
+    yield_and_update { retrieve_dependencies }
   end
 
   def update_versions
-    store_all_versions
-    self.updated_at = Time.now
-    save!
-  rescue => e
-    puts "Updating #{name} failed due to #{e}"
+    yield_and_update { store_all_versions }
   end
 
   def update_gem
-    retrieve_gem
-    self.updated_at = Time.now
-    save!
-  rescue => e
-    puts "Updating #{name} failed due to #{e}"
+    yield_and_update { retrieve_gem }
   end
 
   def update_bugs
-    retrieve_bugs
-    self.updated_at = Time.now
-    save!
-  rescue => e
-    puts "Updating #{name} failed due to #{e}"
+    yield_and_update { retrieve_bugs }
   end
 
   def update_builds
-    retrieve_builds
-    self.updated_at = Time.now
-    save!
-  rescue => e
-    puts "Updating #{name} failed due to #{e}"
+    yield_and_update { retrieve_builds }
   end
 
   def update_from_source
@@ -367,4 +343,15 @@ class FedoraRpm < ActiveRecord::Base
   def last_commit_date_in_words
     "#{time_ago_in_words(last_commit_date)} ago" unless last_commit_date.nil?
   end
+
+  private
+
+  def yield_and_update
+    yield if block_given?
+    self.updated_at = Time.now
+    save!
+  rescue => e
+    puts "Updating #{name} failed due to #{e}"
+  end
+
 end
