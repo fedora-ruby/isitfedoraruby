@@ -85,4 +85,88 @@ describe FedoraRpm do
     it "returns the owner's FAS name" do
     end
   end
+
+  describe '#update_bugs' do
+    it 'calls retrieve_bugs' do
+      expect(rpm).to receive(:retrieve_bugs)
+      rpm.update_bugs
+    end
+
+    it 'rescues errors' do
+      allow(rpm).to receive(:retrieve_bugs).and_raise(StandardError)
+      expect { rpm.update_bugs }.to_not raise_error
+    end
+  end
+
+  describe '#update_builds' do
+    it 'calls retrieve_builds' do
+      expect(rpm).to receive(:retrieve_builds)
+      rpm.update_builds
+    end
+
+    it 'rescues errors' do
+      allow(rpm).to receive(:retrieve_builds).and_raise(StandardError)
+      expect { rpm.update_builds }.to_not raise_error
+    end
+  end
+
+  describe '#update_commits' do
+    it 'calls commits_metadata' do
+      expect(rpm).to receive(:commits_metadata).with(kind_of(String))
+      rpm.update_commits
+    end
+
+    it 'rescues errors' do
+      allow(rpm).to receive(:commits_metadata).and_raise(StandardError)
+      expect { rpm.update_commits }.to_not raise_error
+    end
+  end
+
+  describe '#update_dependencies' do
+    it 'calls retrieve_dependencies' do
+      expect(rpm).to receive(:retrieve_dependencies)
+      rpm.update_dependencies
+    end
+
+    it 'rescues errors' do
+      allow(rpm).to receive(:retrieve_dependencies).and_raise(StandardError)
+      expect { rpm.update_dependencies }.to_not raise_error
+    end
+  end
+
+  describe '#update_gem' do
+    it 'calls retrieve_gem' do
+      expect(rpm).to receive(:retrieve_gem)
+      rpm.update_gem
+    end
+
+    it 'rescues errors' do
+      allow(rpm).to receive(:retrieve_gem).and_raise(StandardError)
+      expect { rpm.update_gem }.to_not raise_error
+    end
+  end
+
+  describe '#update_versions' do
+    it 'calls store_all_versions' do
+      expect(rpm).to receive(:store_all_versions)
+      rpm.update_versions
+    end
+
+    it 'rescues errors' do
+      allow(rpm).to receive(:store_all_versions).and_raise(StandardError)
+      expect { rpm.update_versions }.to_not raise_error
+    end
+  end
+
+  describe '#update_from_source' do
+    it 'updates all the things' do
+      expect(rpm).to receive(:update_commits)
+      expect(rpm).to receive(:update_specs)
+      expect(rpm).to receive(:update_gem)
+      expect(rpm).to receive(:update_bugs)
+      expect(rpm).to receive(:update_builds)
+      rpm.update_from_source
+    end
+  end
+
 end # FedoraRpm
