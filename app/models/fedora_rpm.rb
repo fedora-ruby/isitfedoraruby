@@ -110,10 +110,14 @@ class FedoraRpm < ActiveRecord::Base
     rpm = Pkgwat.get_releases(name).select do |r|
       r['release'] == fedora_version
     end
-    if !!(rpm.first['stable_version'].match(/href/))
-      rpm.first['stable_version'].scan(/>.*-/)[0].gsub(/[>-]/, '')
+    version = rpm.first['stable_version']
+
+    if !!(version.match(/href/))
+      version.scan(/>.*-/)[0].gsub(/[>-]/, '')
+    elsif version.include?('-')
+      version.split('-').first
     else
-      rpm.first['stable_version'].split('-').first
+      version
     end
   end
 
@@ -174,9 +178,13 @@ class FedoraRpm < ActiveRecord::Base
   # - "fN" where N the Fedora version number, eg: 22,21,20,19,etc.
   # If no parameter is passed, it defaults to master.
   def patched?(version_git = 'master')
-    spec_url = "#{base_uri}#{name}.git/plain/#{name}.spec?h=#{version_git}"
-    rpm_spec = open(spec_url).read
-    rpm_spec.scan(/\nPatch0:\s*.*\n/).size != 0
+
+    url = "#{spec_uri}?h=#{version_git}"
+    begin
+      open(url).read.scan(/\nPatch0:\s*.*\n/).size != 0
+    rescue OpenURI::HTTPError
+      false
+    end
   end
 
   # Get the alias mail for the package.
