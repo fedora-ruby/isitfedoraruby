@@ -9,9 +9,9 @@ class FedorarpmsController < ApplicationController
 
   def show
     @name = params[:id]
-    @rpm = FedoraRpm.find_by_name! @name
+    @rpm = FedoraRpm.find_by(name: @name)
     @page_title = @rpm.name
-    @dependencies = @rpm.dependency_packages.uniq
+    @dependencies = @rpm.dependency_packages
     @dependents = @rpm.dependent_packages.uniq
     # We can register a global error handler inside the application controller for this.
     rescue ActiveRecord::RecordNotFound
@@ -25,7 +25,7 @@ class FedorarpmsController < ApplicationController
 
   def full_deps
     @name = params[:id]
-    @rpm = FedoraRpm.find_by_name(@name)
+    @rpm = FedoraRpm.find_by(name: @name)
     respond_to do |format|
       format.html
     end
@@ -33,7 +33,7 @@ class FedorarpmsController < ApplicationController
 
   def full_dependencies
     @name = params[:id]
-    @rpm = FedoraRpm.find_by_name(@name)
+    @rpm = FedoraRpm.find_by(name: @name)
     respond_to do |format|
       format.json { render json: @rpm.json_dependencies }
     end
@@ -41,7 +41,7 @@ class FedorarpmsController < ApplicationController
 
   def full_dependents
     @name = params[:id]
-    @rpm = FedoraRpm.find_by_name(@name)
+    @rpm = FedoraRpm.find_by(name: @name)
     respond_to do |format|
       format.json { render json: @rpm.json_dependents }
     end

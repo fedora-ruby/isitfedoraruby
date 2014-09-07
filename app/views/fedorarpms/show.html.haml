@@ -20,7 +20,7 @@
       = link_to 'Builds', '#builds', { data: {toggle: 'tab'}, role: 'tab' }
   %p
   .tab-content.span12#fedorarpm-show
-    .tab-pane.fade.in.active#info
+    .tab-pane.in.active#info
       - unless @rpm.ruby_gem.nil?
         = button_to "#{@rpm.ruby_gem.name}.gem", rubygem_path(@rpm.ruby_gem.name),
         :class => 'btn btn-success', :type => 'button', :method => :get
@@ -62,7 +62,7 @@
           Description:
           =@rpm.description
 
-    .tab-pane.fade#versions
+    .tab-pane#versions
       .table-responsive
         %table.table.table-hover.table-condensed
           %thead
@@ -76,7 +76,7 @@
                 %td= @rpm.version_for(t)
               %td= @rpm.ruby_gem.version
 
-    .tab-pane.fade#dependencies
+    .tab-pane#dependencies
       %h3
         = link_to 'Dependency Tree', controller: 'fedorarpms',
                                      action: 'full_deps'
@@ -93,20 +93,20 @@
                   %tr.warning
                     %th Package
                     %th Environment
-                    -FedoraRpm.fedora_versions.each do |t, g|
+                    -FedoraRpm.fedora_versions.each do |_t, g|
                       - if g == 'master'
                         %th= 'Rawhide'
                       - else
                         %th= g
                     %th= _('Upstream')
                 %tbody
-                  - @dependencies.each do |d|
+                  - @rpm.dependencies.each do |d|
                     %tr
-                      %td= link_to d.name, fedorarpm_path(d.name)
-                      %td= @rpm.dependencies.find_by(dependent: d.shortname).environment
-                      -FedoraRpm.fedora_versions.each do |t, g|
-                        %td= d.version_for(t)
-                      %td= d.ruby_gem.version
+                      %td= link_to d.dependent, fedorarpm_path(FedoraRpm.find(d.package_id).to_param)
+                      %td= d.environment
+                      -FedoraRpm.fedora_versions.each do |t, _g|
+                        %td= FedoraRpm.find_by(name: "rubygem-#{d.dependent}").version_for(t)
+                      %td= FedoraRpm.find(d.package_id).ruby_gem.version
 
         %div.col-md-6
           - if @dependents.blank?
@@ -128,12 +128,12 @@
                 %tbody
                   - @dependents.each do |d|
                     %tr
-                      %td= link_to d.name, fedorarpm_path(d.name)
+                      %td= link_to d.shortname, fedorarpm_path(d.name)
                       -FedoraRpm.fedora_versions.each do |t, g|
                         %td= d.version_for(t)
                       %td= d.ruby_gem.version
 
-    .tab-pane.fade#bugs
+    .tab-pane#bugs
       - if @rpm.bugs.blank?
         %h4 No bugs found!
       - else
@@ -151,7 +151,7 @@
                   %td
                     = b.name.truncate(60)
 
-    .tab-pane.fade#builds
+    .tab-pane#builds
       .table-responsive
         %table.table.table-hover.table-condensed
           %thead

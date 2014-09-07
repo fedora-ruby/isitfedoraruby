@@ -226,6 +226,19 @@ class FedoraRpm < ActiveRecord::Base
     end
   end
 
+  # Returns an array of dependencies in a FedoraRpm format
+  def dependency_packages
+    dependencies.map do |d|
+      FedoraRpm.where(name: "rubygem-#{d.dependent}").to_a
+    end.compact.flatten
+  end
+
+  def dependent_packages
+    Dependency.where(dependent: shortname).map do |d|
+      d.package if d.package.is_a?(FedoraRpm)
+    end.compact
+  end
+
   def json_dependencies(packages = [])
     children = []
     dependency_packages.each do |p|
@@ -246,19 +259,6 @@ class FedoraRpm < ActiveRecord::Base
       end
     end
     { name: shortname, children: children }
-  end
-
-  # Returns an array of dependencies in a FedoraRpm format
-  def dependency_packages
-    dependencies.map do |d|
-      FedoraRpm.where(name: "rubygem-#{d.dependent}").to_a
-    end.compact.flatten
-  end
-
-  def dependent_packages
-    Dependency.where(dependent: shortname).map do |d|
-      d.package if d.package.is_a?(FedoraRpm)
-    end.compact
   end
 
   def retrieve_gem
