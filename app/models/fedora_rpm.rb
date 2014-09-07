@@ -226,6 +226,20 @@ class FedoraRpm < ActiveRecord::Base
     end
   end
 
+  # Returns an array of arrays containing dependencies with their environment
+  # Environment can be runtime, development or dev/runtime. Exclude double
+  # values.
+  def dependencies_environment
+    self.dependencies.reduce({}) do |hash, elmt|
+      if hash["rubygem-#{elmt.dependent}"]
+        hash["rubygem-#{elmt.dependent}"] = 'dev/runtime'
+      else
+        hash["rubygem-#{elmt.dependent}"] = elmt.environment
+      end
+      hash
+    end.to_a
+  end
+
   # Returns an array of dependencies in a FedoraRpm format
   def dependency_packages
     dependencies.map do |d|

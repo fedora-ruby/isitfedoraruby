@@ -100,13 +100,14 @@
                         %th= g
                     %th= _('Upstream')
                 %tbody
-                  - @rpm.dependencies.each do |d|
+                  - @dependencies.each do |d|
                     %tr
-                      %td= link_to d.dependent, fedorarpm_path(FedoraRpm.find(d.package_id).to_param)
-                      %td= d.environment
+                      %td= link_to d.first.gsub(/rubygem-/,''),
+                        fedorarpm_path(d.first)
+                      %td= d.last
                       -FedoraRpm.fedora_versions.each do |t, _g|
-                        %td= FedoraRpm.find_by(name: "rubygem-#{d.dependent}").version_for(t)
-                      %td= FedoraRpm.find(d.package_id).ruby_gem.version
+                        %td= FedoraRpm.find_by(name: d.first).version_for(t)
+                      %td= FedoraRpm.find_by(name: d.first).ruby_gem.version
 
         %div.col-md-6
           - if @dependents.blank?
