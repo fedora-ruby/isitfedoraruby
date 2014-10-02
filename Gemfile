@@ -44,6 +44,8 @@ gem 'text'
 
 gem 'whenever', :require => false
 
+gem 'newrelic_rpm'
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
