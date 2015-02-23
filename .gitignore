@@ -19,3 +19,4 @@ config/unicorn.rb
 tags
 *.sql
 newrelic.yml
+.vagrant/
