@@ -11,7 +11,7 @@ nohup.out
 db/*sqlite3
 Gemfile.lock
 .idea
-vendor/bundle
+vendor/bundle/*
 vendor/rails
 config/unicorn.rb
 .ruby-version
@@ -19,3 +19,4 @@ config/unicorn.rb
 tags
 *.sql
 newrelic.yml
+public/assets/
