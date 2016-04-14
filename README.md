@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/fedora-ruby/isitfedoraruby.png)](https://travis-ci.org/fedora-ruby/isitfedoraruby)
-[![Code Climate](https://codeclimate.com/github/axilleas/isitfedoraruby.png)](https://codeclimate.com/github/axilleas/isitfedoraruby)
+[![Code Climate](https://codeclimate.com/github/fedora-ruby/isitfedoraruby.png)](https://codeclimate.com/github/fedora-ruby/isitfedoraruby)
 [![Coverage Status](https://coveralls.io/repos/axilleas/isitfedoraruby/badge.png?branch=master)](https://coveralls.io/r/axilleas/isitfedoraruby)
 [![Dependency Status](https://gemnasium.com/axilleas/isitfedoraruby.png)](https://gemnasium.com/axilleas/isitfedoraruby)
 
@@ -11,7 +11,7 @@ integration, especially `gem -> rpm` conversion.
 
 It started as a Google Summer of Code project in 2012, was later enhanced
 through the Google Code In program and now it is again being developed through
-Google Summer of Code 2014. See the [list of contributors](https://github.com/axilleas/isitfedoraruby/graphs/contributors).
+Google Summer of Code 2014. See the [list of contributors](https://github.com/fedora-ruby/isitfedoraruby/graphs/contributors).
 
 ## Installation
 
@@ -20,7 +20,7 @@ First, make sure you have ruby 2.0+ installed.
 Clone the repository:
 
 ```bash
-git clone https://github.com/axilleas/isitfedoraruby.git
+git clone https://github.com/fedora-ruby/isitfedoraruby.git
 ```
 
 Install gems:
